@@ -31,7 +31,7 @@
           :data-source="datasource"
           :rowKey="(record) => record.goods_code"
           :bordered="true"
-          :pagination="{ pageSize: 4 }"
+          :pagination="{ pageSize: 5 }"
         >
           <template slot="verify_state" slot-scope="record">
             <a-tag
@@ -50,8 +50,6 @@
               <a-button type="link" @click="setstockgoods(record)">
                 提交
               </a-button>
-            </div>
-            <div>
               <a-button
                 type="link"
                 style="color: red"

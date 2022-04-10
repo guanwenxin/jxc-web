@@ -42,29 +42,35 @@
                 ><i class="el-icon-menu"></i>基础信息管理</template
               >
               <el-menu-item-group>
-                <el-menu-item index="/goods_manger">商品管理</el-menu-item>
-                <el-menu-item index="/store_manger">仓库管理</el-menu-item>
-                <el-menu-item index="/persion_manger">员工管理</el-menu-item>
-                <el-menu-item index="/role_manger">角色管理</el-menu-item>
+                <el-menu-item index="/goods_manger">商品信息</el-menu-item>
+                <el-menu-item index="/store_manger">仓库信息</el-menu-item>
+                <el-menu-item index="/persion_manger">员工信息</el-menu-item>
               </el-menu-item-group>
-              <!-- <el-submenu index="2-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="2-4-1">选项4-1</el-menu-item>
-            </el-submenu> -->
             </el-submenu>
             <el-submenu index="1">
               <template slot="title"
                 ><i class="el-icon-menu"></i>采购管理</template
               >
               <el-menu-item-group>
-                <!-- <template slot="title">分组一</template> -->
-                <el-menu-item index="/buy_order">提交采购订单</el-menu-item>
-                <el-menu-item index="/supplier_manger">采购订单审核</el-menu-item>
-                <!--           
-              <el-submenu index="1-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="1-4-1">选项4-1</el-menu-item>
-              </el-submenu> -->
+                <el-menu-item index="/buy_order">采购订单提交</el-menu-item>
+                <el-menu-item index="/supplier_manger"
+                  >采购订单审核</el-menu-item
+                >
+              </el-menu-item-group>
+            </el-submenu>
+            <el-submenu index="3">
+              <template slot="title"
+                ><i class="el-icon-menu"></i>库存管理</template
+              >
+              <el-menu-item-group>
+                <el-menu-item index="setStroage_check"
+                  >商品入库申请</el-menu-item
+                >
+                <el-menu-item index="stock_manger">商品入库审核</el-menu-item>
+
+                <el-menu-item index="getStroage_check"
+                  >商品出库信息</el-menu-item
+                >
               </el-menu-item-group>
             </el-submenu>
             <el-submenu index="2">
@@ -72,28 +78,13 @@
                 ><i class="el-icon-menu"></i>销售管理</template
               >
               <el-menu-item-group>
-                <el-menu-item index="customer_manger">客户管理</el-menu-item>
-                <el-menu-item index="sale_manger">销售管理</el-menu-item>
+                <el-menu-item index="sale_manger">销售订单提交</el-menu-item>
+                <el-menu-item index="customer_manger"
+                  >销售订单审核</el-menu-item
+                >
               </el-menu-item-group>
-              <!-- <el-submenu index="2-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="2-4-1">选项4-1</el-menu-item>
-            </el-submenu> -->
             </el-submenu>
-            <el-submenu index="3">
-              <template slot="title"
-                ><i class="el-icon-menu"></i>库存管理</template
-              >
-              <el-menu-item-group>
-                <el-menu-item index="stock_manger">库存管理</el-menu-item>
-                <el-menu-item index="setStroage_check">入库审核</el-menu-item>
-                <el-menu-item index="getStroage_check">出库管理</el-menu-item>
-              </el-menu-item-group>
-              <!-- <el-submenu index="2-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="2-4-1">选项4-1</el-menu-item>
-            </el-submenu> -->
-            </el-submenu>
+
             <el-submenu index="5">
               <template slot="title"
                 ><i class="el-icon-user"></i>个人信息</template
@@ -153,31 +144,30 @@ export default {
     },
   },
   created() {
-      if(!this.$route.query.account){
-          this.code =sessionStorage.getItem('code')
-          this.user_name=sessionStorage.getItem('user_name')
-          this.account=sessionStorage.getItem('account')
-      }else{
-        this.axios(`/myApi/re?account=${this.$route.query.account}`).then(
+    if (!this.$route.query.account) {
+      this.code = sessionStorage.getItem("code");
+      this.user_name = sessionStorage.getItem("user_name");
+      this.account = sessionStorage.getItem("account");
+    } else {
+      this.axios(`/myApi/re?account=${this.$route.query.account}`).then(
         (res) => {
-          
           let user_name = res.data.data[0].user_name;
-          sessionStorage.setItem('account',this.$route.query.account)
-          sessionStorage.setItem('user_name', user_name)
-          sessionStorage.setItem('code',res.data.code)
+          sessionStorage.setItem("account", this.$route.query.account);
+          sessionStorage.setItem("user_name", user_name);
+          sessionStorage.setItem("code", res.data.code);
           if (!user_name) {
-            this.user_name=''
+            this.user_name = "";
             this.code = res.data.code;
             alert("请先完善信息!!!");
             this.$router.push("/update_user");
-          }else{
-              this.code = res.data.code;
-              this.user_name=user_name
+          } else {
+            this.code = res.data.code;
+            this.user_name = user_name;
           }
         }
       );
-      }
     }
+  },
   // },
 };
 </script>
@@ -209,12 +199,11 @@ body {
 .main_css {
   background: #faf4f4;
   max-height: 720px;
- 
 }
 .router_css {
   width: 100%;
   height: 100%;
-   overflow: hidden;
+  overflow: hidden;
   background-color: rgb(255, 255, 255);
 }
 </style>

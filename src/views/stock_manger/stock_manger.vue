@@ -9,9 +9,9 @@
       >
         <a-row>
           <a-col :span="8">
-            <a-form-item :label="`订单或商品编号`">
+            <a-form-item :label="`商品编号`">
               <a-input
-                v-decorator="[`goods_order_num`]"
+                v-decorator="[`goods_code`]"
                 placeholder="请输入订单或者商品编号"
               />
             </a-form-item>
@@ -23,9 +23,6 @@
             <a-button :style="{ marginLeft: '8px' }" @click="handleReset">
               清除
             </a-button>
-            <a-button :style="{ marginLeft: '8px' }" @click="handAddorder">
-              添加
-            </a-button>
           </a-col>
         </a-row>
       </a-form>
@@ -35,7 +32,7 @@
           :data-source="datasource"
           :rowKey="(record) => record.goods_code"
           :bordered="true"
-          :pagination="{ pageSize: 3 }"
+          :pagination="{ pageSize: 5}"
         >
           <template slot="verify_state" slot-scope="record">
             <a-tag
@@ -299,6 +296,11 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log("form的提交信息", values);
+          this.getstocksalldata(values).then((res) => {
+            if (res.data.code == 200) {
+              this.datasource = res.data.data;
+            }
+          });
         }
       });
     },
@@ -327,7 +329,7 @@ export default {
       record.verify_account = sessionStorage.getItem("account");
       this.agreestock(record).then((res) => {
         // console.log(res);
-        this.addgoods(record)
+        this.addgoods(record);
         if (res.data.code == 200) {
           this.$message.success(res.data.msg);
           this.getstocksalldata("").then((res) => {
@@ -355,11 +357,13 @@ export default {
       return this.axios.post("/myApi//agreestock", this.qs.stringify(params));
     },
     //更新goods信息
-    addgoods(params){
-      this.axios.post('/myApi/addgoods',this.qs.stringify(params)).then(res=>{
-        console.log(res);
-      })
-    }
+    addgoods(params) {
+      this.axios
+        .post("/myApi/addgoods", this.qs.stringify(params))
+        .then((res) => {
+          console.log(res);
+        });
+    },
   },
 
   created() {
