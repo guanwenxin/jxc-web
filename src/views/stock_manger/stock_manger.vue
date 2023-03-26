@@ -73,7 +73,7 @@
         >
           <a-form-item label="商品编号">
             <a-input
-              placeholder="请输入商品编号:一般都为四位"
+              placeholder="请输入商品编号:例如1234"
               v-decorator="[
                 'goods_code',
                 {
@@ -96,7 +96,7 @@
                   rules: [
                     {
                       required: true,
-                      message: '请输入商品名称;例如: 哈药',
+                      message: '请输入商品名称;例如xxx',
                     },
                   ],
                 },
@@ -121,14 +121,14 @@
           </a-form-item>
           <a-form-item label="订单号">
             <a-input
-              placeholder="请输入订单号:例如:0000 、F0000"
+              placeholder="请输入订单号:例如1234"
               v-decorator="[
                 'order_num',
                 {
                   rules: [
                     {
                       required: true,
-                      message: '请输入订单号:例如:0000 、F0000',
+                      message: '请输入订单号:例如1234',
                     },
                   ],
                 },
@@ -137,14 +137,14 @@
           </a-form-item>
           <a-form-item label="数量">
             <a-input
-              placeholder="请输入采购数量：例如 0、10、100"
+              placeholder="请输入采购数量：例如1234"
               v-decorator="[
                 'count',
                 {
                   rules: [
                     {
                       required: true,
-                      message: '请输入采购数量：例如 0、10、100',
+                      message: '请输入采购数量：例如1234',
                     },
                   ],
                 },

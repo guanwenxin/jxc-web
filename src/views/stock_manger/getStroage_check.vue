@@ -1,4 +1,3 @@
-
 <template>
   <div class="stock_manger">
     <div id="components-form-demo-advanced-search">
@@ -34,7 +33,6 @@
           :bordered="true"
           :pagination="{ pageSize: 6 }"
         >
-
           <template slot="verify_state" slot-scope="record">
             <a-tag
               v-if="record.verify_state != '通过'"
@@ -78,14 +76,14 @@
         >
           <a-form-item label="数量">
             <a-input
-              placeholder="请输入采购数量：例如 0、10、100"
+              placeholder="请输入采购数量："
               v-decorator="[
                 'sale_num',
                 {
                   rules: [
                     {
                       required: true,
-                      message: '请输入采购数量：例如 0、10、100',
+                      message: '请输入采购数量：',
                     },
                   ],
                 },
@@ -163,22 +161,22 @@ export default {
           align: "center",
           dataIndex: "submit_account",
         },
-        
+
         {
-          title:'审批通过时间',
-          align:"center",
-          dataIndex:"veriify_time"
+          title: "审批通过时间",
+          align: "center",
+          dataIndex: "veriify_time",
         },
-        
+
         {
           title: "审核状态",
           align: "center",
           scopedSlots: { customRender: "verify_state" },
         },
         {
-          title:'审批人',
-          align:"center",
-          dataIndex:"verify_account"
+          title: "审批人",
+          align: "center",
+          dataIndex: "verify_account",
         },
       ],
     };
@@ -188,37 +186,38 @@ export default {
     console.log("updated");
   },
   methods: {
+    handleOkmodal() {
+      console.log("这样才定义了");
+    },
     //form表格提交方法
     handleSearch(e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log("form的提交信息", values);
-         this.salesearchinfo(values).then(res=>{
-           this.datasource = res.data.data;
-         })
+          this.salesearchinfo(values).then((res) => {
+            this.datasource = res.data.data;
+          });
         }
       });
     },
-   
-    
 
     //信息重置方法
     handleReset() {
       this.form.resetFields();
     },
 
-   
-
-   
     //插入数据 setstocksale
     salesearchinfo(params) {
-      return this.axios.post("/myApi/salesearchinfo", this.qs.stringify(params));
+      return this.axios.post(
+        "/myApi/salesearchinfo",
+        this.qs.stringify(params)
+      );
     },
     //获取sale表中的数据
-    saleallinfo(params){
-      return this.axios.post("/myApi/saleallinfo",this.qs.stringify(params))
-    }
+    saleallinfo(params) {
+      return this.axios.post("/myApi/saleallinfo", this.qs.stringify(params));
+    },
   },
 
   created() {

@@ -132,13 +132,6 @@ export default {
           dataIndex: "mount_time",
         },
 
-        // {
-        //   title: "审核状态",
-        //   align: "center",
-        //   // dataIndex: "verify_state",
-        //   scopedSlots: { customRender: "verify_state" },
-        // },
-
         {
           title: "操作",
           align: "center",

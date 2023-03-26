@@ -1,5 +1,5 @@
 {
-  "name": "erq_pra",
+  "name": "jxc-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,5 +23,13 @@
     "@vue/cli-plugin-vuex": "~4.5.15",
     "@vue/cli-service": "~4.5.15",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "description": "## Project setup ``` npm install ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/bai-hongxian_admin/webpra.git"
+  },
+  "author": "",
+  "license": "ISC"
 }

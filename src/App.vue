@@ -3,7 +3,7 @@
     <div class="systemAll" v-if="code == 200">
       <!-- 这个是顶部的导航栏 --start -->
       <el-header class="el_header" style="text-align: right">
-        <div class="el_header_left">进销存系统</div>
+        <div class="el_header_left">企业进销存管理系统</div>
         <div class="el_header_right">
           <el-dropdown>
             <i
@@ -27,7 +27,7 @@
       </el-header>
       <!-- 这个是顶部的导航栏 --end -->
       <!-- 下方的主体部分 --start -->
-      <el-container style="height: 90vh; border: 1px solid #eee">
+      <el-container style="height: 100%; border: 1px solid #eee">
         <!-- 侧边栏部分--start -->
         <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
           <!-- 默认打开的侧边栏配置 :default-openeds="['1', '3'] -->

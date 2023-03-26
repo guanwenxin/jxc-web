@@ -106,7 +106,7 @@
                   rules: [
                     {
                       required: true,
-                      message: '请输入商品名称;例如: 哈药',
+                      message: '请输入商品名称',
                     },
                   ],
                 },

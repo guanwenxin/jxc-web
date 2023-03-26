@@ -67,7 +67,7 @@
       </div>
 
       <a-modal
-        title="仓库编辑"
+        title="仓库管理"
         :visible="visible"
         @ok="handleOkmodal"
         @cancel="visible = false"
@@ -86,7 +86,7 @@
                   rules: [
                     {
                       required: true,
-                      message: '请输入仓库名称;例如:濮阳市仓库',
+                      message: '请输入仓库名称',
                     },
                   ],
                 },
@@ -95,7 +95,7 @@
           </a-form-item>
           <a-form-item label="仓库编号">
             <a-input
-              placeholder="请输入仓库的编号;例如:C001、C002"
+              placeholder="请输入仓库的编号"
               v-decorator="[
                 'st_code',
                 {
@@ -239,6 +239,16 @@ export default {
     handleReset() {
       this.form.resetFields();
     },
+
+
+    //     //添加订单信息
+    //   handAddorder() {
+    //   this.add = true;
+    //   this.visible = true;
+    //   this.text = "添加订单";
+    // },
+
+    
     //编辑仓库row的方法
     edit(data) {
       // console.log(data.store_id);

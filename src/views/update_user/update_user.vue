@@ -136,7 +136,7 @@
       <template slot="footer">
         <a-button key="back"> 关闭 </a-button>
       </template>
-      <p>3s后退出本界面,请重新登录</p>
+      <p>即将退出本界面,请重新登录</p>
     </a-modal>
   </div>
 </template>
