@@ -29,8 +29,14 @@
         />
       </a-form-item>
       <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
-        <a-button type="primary" html-type="submit"> 提交 </a-button>
-        <a-button type="primary" html-type="reset"> 清空 </a-button>
+        <a-button type="primary" html-type="submit"> 
+          <!-- 提交  -->
+          {{ $t("msg.up") }}
+        </a-button>
+        <a-button type="primary" html-type="reset">
+           <!-- 清空  -->
+           {{ $t("msg.clear") }}
+          </a-button>
       </a-form-item>
     </a-form>
 

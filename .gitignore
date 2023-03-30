@@ -3,6 +3,7 @@ bin-debug/
 bin-release/
 node_modules/
 dist/
+src/assets/weather-img
 [Oo]bj/
 [Bb]in/
 

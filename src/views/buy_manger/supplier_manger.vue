@@ -18,10 +18,28 @@
         </a-row>
         <a-row>
           <a-col :span="6">
-            <a-button type="primary" html-type="submit"> 搜索 </a-button>
-            <a-button :style="{ marginLeft: '8px' }" @click="handleReset">
-              清除
+            <a-button type="primary" html-type="submit"> 
+              <!-- 搜索  -->
+              {{ $t("msg.search") }}
             </a-button>
+            <a-button :style="{ marginLeft: '8px' }" @click="handleReset">
+              <!-- 清除 -->
+              {{ $t("msg.clear") }}
+            </a-button>
+
+            <!-- excel导出 -->
+            <download-excel
+              class="export-excel-wrapper"
+              :data="datasource"
+              :fields="json_fields"
+              :header="title"
+              name="xxx公司进销存订单列表.xls"
+            >
+              <el-button size="small" type="warning">
+                <!-- 导出 -->
+                {{ $t("msg.export") }}
+              </el-button>
+            </download-excel>
           </a-col>
         </a-row>
       </a-form>
@@ -34,10 +52,13 @@
           :pagination="{ pageSize: 4 }"
         >
           <template slot="verify_state" slot-scope="record">
-            <a-tag v-if="record.verify_state!='通过'" :color="record.verify_state === '不通过' ? 'volcano' : 'geekblue' ">
+            <a-tag
+              v-if="record.verify_state != '通过'"
+              :color="record.verify_state === '不通过' ? 'volcano' : 'geekblue'"
+            >
               {{ record.verify_state }}
             </a-tag>
-            <a-tag v-else :color="record.verify_state  ? 'green':'' ">
+            <a-tag v-else :color="record.verify_state ? 'green' : ''">
               {{ record.verify_state }}
             </a-tag>
           </template>
@@ -61,6 +82,38 @@ import moment from "moment";
 export default {
   data() {
     return {
+      // excel
+      formInline: {},
+      // tableData: [],//订单列表数据展示
+      total: 10,
+      pageSize: 1,
+      ids: [],//操作id数组集合]
+      DetailsForm: [],//需要导出的数据 [{},{}]
+      json_fields: {//映射字段值
+        // "订单编号": 'goods_code',
+          //数字处理--防止订单编号太长
+          "订单编号":{
+          field:"goods_code",
+          callback:value=>{
+            return '&nbsp;'+value;
+          }
+        },
+        "商品名称": 'name',
+        "供应商": 'production_name',
+        "订单号": 'order_num',
+        "数量": 'count',
+        "单价":'one_price',
+        "总价":'all_price',
+        "创建时间":'create_time',
+        "编辑后时间":'update_time',
+        "通过时间":'mount_time',
+        "创建者":'create_account',
+        "审核状态":'verify_state',
+        "审核者":'mount_account',
+      },
+      title: 'guan公司进销存管理系统商品订单采购列表',//
+
+
       form: this.$form.createForm(this, { name: "advanced_search" }),
       datasource: [],
       visible: false,
@@ -250,5 +303,10 @@ export default {
   min-height: 200px;
   text-align: center;
   padding-top: 80px;
+}
+
+.export-excel-wrapper {
+  display: inline-block;
+  margin-left: 10px;
 }
 </style>

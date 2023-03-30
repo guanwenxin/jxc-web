@@ -19,9 +19,13 @@
         </a-row>
         <a-row>
           <a-col :span="6">
-            <a-button type="primary" html-type="submit"> 搜索 </a-button>
+            <a-button type="primary" html-type="submit">
+               <!-- 搜索  -->
+               {{ $t("msg.search") }}
+              </a-button>
             <a-button :style="{ marginLeft: '8px' }" @click="handleReset">
-              清除
+              <!-- 清除 -->
+              {{ $t("msg.clear") }}
             </a-button>
           </a-col>
         </a-row>
@@ -49,7 +53,8 @@
                 <a-button type="link" @click="edit(record)"> 修改 </a-button>
              
                 <a-button type="link" @click="handsubmit(record)">
-                  提交
+                  <!-- 提交 -->
+                  {{ $t("msg.up") }}
                 </a-button>
               </div>
             </div>

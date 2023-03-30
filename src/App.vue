@@ -3,25 +3,29 @@
     <div class="systemAll" v-if="code == 200">
       <!-- 这个是顶部的导航栏 --start -->
       <el-header class="el_header" style="text-align: right">
-        <div class="el_header_left">企业进销存管理系统</div>
+        <div class="el_header_left">
+          <!-- 企业进销存管理系统 -->
+          {{ $t("msg.name") }}
+        </div>
         <div class="el_header_right">
-          <el-dropdown>
-            <i
-              class="el-icon-setting"
-              style="margin-right: 15px; font-size: 18px"
-            ></i>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item style="font-size: 18px"
-                >个人信息</el-dropdown-item
+          <!-- 语言选择下拉 -->
+          <el-select
+              size="small"
+              v-model="selectedLang"
+              placeholder="请选择语言"
+              @change="changeLang"
+              style="width:110px;"
+            >
+              <el-option
+                v-for="(lang, index) in langArr"
+                :label="lang.label"
+                :value="lang.value"
+                :key="index"
               >
-              <el-dropdown-item style="font-size: 18px"
-                >使用申请</el-dropdown-item
-              >
-              <el-dropdown-item style="font-size: 18px"
-                >退出登录</el-dropdown-item
-              >
-            </el-dropdown-menu>
-          </el-dropdown>
+              </el-option>
+            </el-select>
+
+
           <span>{{ this.user_name }}</span>
         </div>
       </el-header>
@@ -38,71 +42,127 @@
             :router="true"
           >
             <el-submenu index="4">
-              <template slot="title"
-                ><i class="el-icon-menu"></i>基础信息管理</template
-              >
+              <template slot="title">
+                <i class="el-icon-menu">
+                </i>
+                <!-- 基础信息管理 -->
+                {{ $t("msg.base") }}
+              </template>
               <el-menu-item-group>
-                <el-menu-item index="/goods_manger">商品信息</el-menu-item>
-                <el-menu-item index="/store_manger">仓库信息</el-menu-item>
-                <el-menu-item index="/persion_manger">员工信息</el-menu-item>
+                <el-menu-item index="/goods_manger">
+                  <!-- 商品信息 -->
+                  {{ $t("msg.shangpin") }}
+                </el-menu-item>
+                <el-menu-item index="/store_manger">
+                  <!-- 仓库信息 -->
+                  {{ $t("msg.cangku") }}
+                </el-menu-item>
+                <el-menu-item index="/persion_manger">
+                  <!-- 员工信息 -->
+                  {{ $t("msg.yuangong") }}
+                </el-menu-item>
               </el-menu-item-group>
             </el-submenu>
             <el-submenu index="1">
               <template slot="title"
-                ><i class="el-icon-menu"></i>采购管理</template
+                ><i class="el-icon-menu"></i>
+                <!-- 采购管理 -->
+                {{ $t("msg.caigou") }}
+                </template
               >
               <el-menu-item-group>
-                <el-menu-item index="/buy_order">采购订单提交</el-menu-item>
-                <el-menu-item index="/supplier_manger"
-                  >采购订单审核</el-menu-item
+                <el-menu-item index="/buy_order">
+                  <!-- 采购订单提交 -->
+                  {{ $t("msg.caigoudingdantijiao") }}
+                </el-menu-item>
+                <el-menu-item index="/supplier_manger">
+                  <!-- 采购订单审核 -->
+                  {{ $t("msg.caigoudingdanshenhe") }}
+                  </el-menu-item
                 >
               </el-menu-item-group>
             </el-submenu>
             <el-submenu index="3">
               <template slot="title"
-                ><i class="el-icon-menu"></i>库存管理</template
+                ><i class="el-icon-menu"></i>
+                <!-- 库存管理 -->
+                {{ $t("msg.kucun") }}
+                </template
               >
               <el-menu-item-group>
                 <el-menu-item index="setStroage_check"
-                  >商品入库申请</el-menu-item
+                  >
+                  <!-- 商品入库申请 -->
+                  {{ $t("msg.shangpinrukushenqing") }}
+                  </el-menu-item
                 >
-                <el-menu-item index="stock_manger">商品入库审核</el-menu-item>
+                <el-menu-item index="stock_manger">
+                  <!-- 商品入库审核 -->
+                  {{ $t("msg.shangpinrukushenhe") }}
+                </el-menu-item>
 
                 <el-menu-item index="getStroage_check"
-                  >商品出库信息</el-menu-item
+                  >
+                  <!-- 商品出库信息 -->
+                  {{ $t("msg.shangpinchukuxinxi") }}
+                  </el-menu-item
                 >
               </el-menu-item-group>
             </el-submenu>
             <el-submenu index="2">
               <template slot="title"
-                ><i class="el-icon-menu"></i>销售管理</template
+                ><i class="el-icon-menu"></i>
+                <!-- 销售管理 -->
+                {{ $t("msg.xiaoshou") }}
+                </template
               >
               <el-menu-item-group>
-                <el-menu-item index="sale_manger">销售订单提交</el-menu-item>
+                <el-menu-item index="sale_manger">
+                  <!-- 销售订单提交 -->
+                  {{ $t("msg.xiaoshoudingdantijiao") }}
+                </el-menu-item>
                 <el-menu-item index="customer_manger"
-                  >销售订单审核</el-menu-item
+                  >
+                  <!-- 销售订单审核 -->
+                  {{ $t("msg.xiaoshoudingdanshenhe") }}
+                  </el-menu-item
                 >
               </el-menu-item-group>
             </el-submenu>
 
             <el-submenu index="5">
               <template slot="title"
-                ><i class="el-icon-user"></i>个人信息</template
+                ><i class="el-icon-user"></i>
+                <!-- 个人信息 -->
+                {{ $t("msg.geren") }}
+                </template
               >
               <el-menu-item-group>
                 <template slot="title"></template>
-                <el-menu-item index="/update_user">修改信息</el-menu-item>
-                <el-menu-item @click="loginOut">退出登录</el-menu-item>
+                <el-menu-item index="/update_user">
+                  <!-- 修改信息 -->
+                  {{ $t("msg.xiugaixinxi") }}
+                </el-menu-item>
+                <el-menu-item @click="loginOut">
+                  <!-- 退出登录 -->
+                  {{ $t("msg.tuichudenglu") }}
+                </el-menu-item>
               </el-menu-item-group>
             </el-submenu>
             <el-submenu index="6">
               <template slot="title"
-                ><i class="el-icon-setting"></i>关于系统</template
+                ><i class="el-icon-setting"></i>
+                <!-- 关于系统 -->
+                {{ $t("msg.xitong") }}
+                </template
               >
               <el-menu-item-group>
                 <template slot="title"></template>
                 <el-menu-item index="/system_introduction"
-                  >系统说明</el-menu-item
+                  >
+                  <!-- 系统说明 -->
+                  {{ $t("msg.xitingshuoming") }}
+                  </el-menu-item
                 >
               </el-menu-item-group>
             </el-submenu>
@@ -131,9 +191,21 @@ export default {
       key_Path: ["6"],
       code: "",
       user_name: "",
+      langArr: [
+        { label: "中文", value: "zh" },
+        { label: "English", value: "en" },
+      ],
+      selectedLang: "",
     };
   },
   methods: {
+
+    // TODO: 更改国际化语言
+    changeLang(lang) {
+      console.log(this.$i18n.locale, this.$root.$i18n.locale)
+      this.$i18n.locale = lang
+    },
+
     handleOpen(key, keyPath) {
       this.key_Path = keyPath;
     },

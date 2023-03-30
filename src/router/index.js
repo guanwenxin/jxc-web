@@ -22,6 +22,7 @@ const routes = [
     name: 'SystemIntroduction',
     component: System_introduction
   },
+
   //基础信息管理
   ...route_goodsBase,
   //采购管理

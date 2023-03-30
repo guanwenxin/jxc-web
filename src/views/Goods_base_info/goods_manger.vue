@@ -47,10 +47,24 @@
         </a-row>
         <a-row>
           <a-col :span="24" :style="{ textAlign: 'right' }">
-            <a-button type="primary" html-type="submit"> 搜索 </a-button>
-            <a-button :style="{ marginLeft: '8px' }" @click="handleReset">
-              清空
+            <a-button type="primary" html-type="submit"> 
+              <!-- 搜索  -->
+              {{ $t("msg.search") }}
             </a-button>
+            <a-button :style="{ marginLeft: '8px' }" @click="handleReset">
+              <!-- 清空 -->
+              {{ $t("msg.clear") }}
+            </a-button>
+
+            <!-- excel导出 -->
+            <download-excel class="export-excel-wrapper" :data="datasource" :fields="json_fields" :header="title"
+          name="xxx公司进销存订单列表.xls">
+          <el-button size="small" type="warning">
+            <!-- 导出 -->
+            {{ $t("msg.export") }}
+          </el-button>
+        </download-excel>
+
           </a-col>
         </a-row>
       </a-form>
@@ -82,9 +96,45 @@
 </template>
 
 <script>
+
+
 export default {
+  components:{
+
+  },
   data() {
     return {
+      // excel
+      formInline: {},
+      // tableData: [],//订单列表数据展示
+      total: 10,
+      pageSize: 1,
+      ids: [],//操作id数组集合]
+      DetailsForm: [],//需要导出的数据 [{},{}]
+      json_fields: {
+        //映射字段值
+        "商品名称": 'name',
+        // "订单编号": 'goods_code',
+          //数字处理--防止订单编号太长
+          "订单编号":{
+          field:"goods_code",
+          callback:value=>{
+            return '&nbsp;'+value;
+          }
+        },
+        "品牌": 'ppbrand',
+        "进价": 'buy_price',
+        "售价": 'sale_price',
+        "商品描述":'goods_desc',
+        "更新时间":'update_time',
+      },
+      title: 'guan公司进销存管理系统商品信息列表',//
+
+
+
+      // dialogVisible:false,
+
+
       form: this.$form.createForm(this, { name: "advanced_search" }),
       datasource: [],
       goodsbrand: [],
@@ -142,6 +192,9 @@ export default {
     console.log("updated");
   },
   methods: {
+    // handleClose(){
+    //         this.dialogVisible=false
+    //     },
     //搜索按钮的请求方法
     handleSearch(e) {
       e.preventDefault();
@@ -226,5 +279,10 @@ export default {
   min-height: 200px;
   text-align: center;
   padding-top: 80px;
+}
+
+.export-excel-wrapper{
+display: inline-block;
+margin-left: 10px;
 }
 </style>

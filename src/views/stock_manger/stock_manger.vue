@@ -19,13 +19,29 @@
         </a-row>
         <a-row>
           <a-col :span="6">
-            <a-button type="primary" html-type="submit"> 搜索 </a-button>
+            <a-button type="primary" html-type="submit">
+               <!-- 搜索  -->
+               {{ $t("msg.search") }}
+              </a-button>
             <a-button :style="{ marginLeft: '8px' }" @click="handleReset">
-              清除
+              <!-- 清除 -->
+              {{ $t("msg.clear") }}
             </a-button>
+
+            <!-- excel导出 -->
+            <download-excel class="export-excel-wrapper" :data="datasource" :fields="json_fields" :header="title"
+          name="xxx公司进销存订单列表.xls">
+          <el-button size="small" type="warning">
+            <!-- 导出 -->
+            {{ $t("msg.export") }}
+          </el-button>
+        </download-excel>
+
           </a-col>
         </a-row>
       </a-form>
+
+      <!-- 表格部分 -->
       <div class="search-result-list">
         <a-table
           :columns="columns"
@@ -211,6 +227,36 @@ import moment from "moment";
 export default {
   data() {
     return {
+
+      // excel
+      formInline: {},
+      // tableData: [],//订单列表数据展示
+      total: 10,
+      pageSize: 1,
+      ids: [],//操作id数组集合]
+      DetailsForm: [],//需要导出的数据 [{},{}]
+      json_fields: {//映射字段值
+        // "订单编号": 'goods_code',
+          //数字处理--防止订单编号太长
+          "订单编号":{
+          field:"goods_code",
+          callback:value=>{
+            return '&nbsp;'+value;
+          }
+        },
+        "商品名称": 'name',
+        "供应商": 'ppbrand',
+        "数量": 'goods_num',
+        "单价": 'buy_price',
+        "库存成本":'goods_allprice',
+        "入库时间":'goin_time',
+        "发起人":'account',
+        "审核状态":'verify_state',
+        "审核人":'verify_account',
+      },
+      title: 'guan公司进销存管理系统商品入库列表',//
+
+
       form: this.$form.createForm(this, { name: "advanced_search" }),
       form1: this.$form.createForm(this, { name: "advanced_search" }),
       text: null,
@@ -405,5 +451,10 @@ export default {
   min-height: 200px;
   text-align: center;
   padding-top: 80px;
+}
+
+.export-excel-wrapper{
+display: inline-block;
+margin-left: 10px;
 }
 </style>
