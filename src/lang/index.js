@@ -31,7 +31,7 @@ const messages = {
             xiaoshou: '销售管理',
             xiaoshoudingdantijiao: '销售订单提交',
             xiaoshoudingdanshenhe: '销售订单审核',
-            geren: '个人',
+            geren: '个人管理',
             xiugaixinxi: '修改信息',
             tuichudenglu: '退出登录',
             xitong: '关于系统',
@@ -46,6 +46,18 @@ const messages = {
             qrmm: '确认密码',
             up: '提交',
             hetong: '查看合同',
+
+            // 系统说明部分
+            qiyehetong: '企业合同',
+            lc: '商品价格折线图',
+            WeatherForecast: '天气预报查询',
+            entry: '快捷入口',
+            sale: '销售价格',
+            rice: '大米',
+            paper: '打印纸',
+            chair: '椅子',
+            table: '办公桌',
+            gold: '黄金万两',
         }
 
     },
@@ -85,6 +97,18 @@ const messages = {
             qrmm: 'qrmm',
             up: 'up',
             hetong: 'hetong',
+
+            // 系统说明部分
+            qiyehetong: 'qiye',
+            lc: 'linechart',
+            WeatherForecast: ' WeatherForecast',
+            entry: 'Quick entry',
+            sale: 'sale',
+            rice: 'rice',
+            paper: 'paper',
+            chair: 'chair',
+            table: 'table',
+            gold: 'gold',
         },
         ...Eli18nen,
     }

@@ -213,7 +213,9 @@ export default {
         if (res.data.code == 200) {
           this.$message.success(res.data.msg);
           this.getgoods();
-        }
+        }else {
+        this.$message.info("没有权限");
+      }
       });
     },
     delcancel() {

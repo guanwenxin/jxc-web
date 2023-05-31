@@ -3,12 +3,16 @@
       <div class="downcontainer">
         <div class="containerHeader">
           <el-input v-model="city" style="height: 38px;"/>
-          <el-button @click="getWeather" style="height: 38px;">查询</el-button>
+          <el-button @click="getWeather" style="height: 38px;">
+            <!-- 查询 -->
+            <!-- search -->
+            {{ $t("msg.search") }}
+          </el-button>
         </div>
         <el-table stripe :data="tableData">
-          <el-table-column prop="name" label="天气条目"></el-table-column>
-          <el-table-column prop="property" label="key值"></el-table-column>
-          <el-table-column prop="value" label="现状">
+          <el-table-column prop="name" label="Weather entries"></el-table-column>
+          <el-table-column prop="property" label="key"></el-table-column>
+          <el-table-column prop="value" label="status quo">
             <template v-slot:default="scope">
               <!-- 设置图片显示 -->
               <img

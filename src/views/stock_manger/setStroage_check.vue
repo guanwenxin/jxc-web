@@ -22,8 +22,8 @@
               <!-- 搜索  -->
               {{ $t("msg.search") }}
             </a-button>
+                          <!-- 清除 -->
             <a-button :style="{ marginLeft: '8px' }" @click="handleReset">
-              <!-- 清除 -->
               {{ $t("msg.clear") }}
             </a-button>
           </a-col>
@@ -55,14 +55,14 @@
                 <!-- 提交 -->
                 {{ $t("msg.up") }}
               </a-button>
-              <a-button
+                              <!-- 撤销 -->
+              <!-- <a-button
                 type="link"
                 style="color: red"
                 @click="removestockgoods(record)"
               >
-                <!-- 撤销 -->
                 {{ $t("msg.clear") }}
-              </a-button>
+              </a-button> -->
             </div>
           </template>
         </a-table>

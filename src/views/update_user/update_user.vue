@@ -33,8 +33,8 @@
           <!-- 提交  -->
           {{ $t("msg.up") }}
         </a-button>
+                   <!-- 清空  -->
         <a-button type="primary" html-type="reset">
-           <!-- 清空  -->
            {{ $t("msg.clear") }}
           </a-button>
       </a-form-item>
